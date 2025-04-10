@@ -98,45 +98,47 @@ void move2(int y, int x, int m1, int m2, int m3, int m4){
     int pass4 = grid[m3y][m3x];
     
 
-    int i = m1y + 1;
-    int j = m1x - 1;
+    int i = m4y - 1;
+    int j = m4x + 1;
     while(m1--){
         grid[i+1][j-1] = grid[i][j];
         i--;
         j++;
     }
-    grid[m1y][m1x] = pass2;
+
+    //grid[m1y][m1x] = pass2;
 
 
-    i = m2y;
-    j = m2x;
+    i = m1y - 1;
+    j = m1x - 1;
     while(m2--){
         grid[i+1][j+1] = grid[i][j];
         i--;
         j--;
     }
-    grid[m2y][m2x] = pass3;
+    // // // grid[m2y][m2x] = pass3;
 
 
-    i = m3y - 1;
-    j = m3x + 1;
-    while(m3--){  
+    i = m2y + 1;
+    j = m2x - 1;
+    while(m3--){ 
+ 
         grid[i-1][j+1] = grid[i][j];
         i++;
         j--;
     }
-    grid[m3y][m3x]=pass4;
+    // // // grid[m3y-1][m3x+1]=pass4;
 
 
-    i = m4y;
-    j = m4x;
+    i = m3y + 1;
+    j = m3x + 1;
     while(m4--){
+        //cout << "i = " << i << " j = " << j << '\n';
         grid[i-1][j-1] = grid[i][j];
         i++;
         j++;
     }
     grid[m4y-1][m4x-1]=pass1;
-
 }
 
 
