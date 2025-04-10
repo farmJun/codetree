@@ -44,7 +44,7 @@ void move1(int y, int x, int m1, int m2, int m3, int m4){
         i++;
         j--;
     }
-    grid[m4y-1][m4x+1] = pass4;
+    //grid[m4y-1][m4x+1] = pass4;
 
 
     i = m2y + 1;
@@ -72,7 +72,7 @@ void move1(int y, int x, int m1, int m2, int m3, int m4){
     while(m4--){
         grid[i+1][j+1] = grid[i][j];
         i--;
-        j++;
+        j--;
     }
     grid[m3y+1][m3x+1]=pass3;
 
