@@ -8,7 +8,7 @@ int n;
 int x1[15], x2[15];
 vector<pair<int,int>> v;
 int ans;
-bool visited[15];
+bool visited[1001];
 
 bool possible(int start, int end){
     for(int i = start; i <= end; i++){
@@ -75,7 +75,7 @@ void solve(int cur){
             solve(cur + 1);
             int size = v.size();
             ans = max(ans, size);
-            
+
             v.pop_back();
             free(start, end);
         }
