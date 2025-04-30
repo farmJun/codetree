@@ -8,79 +8,50 @@ int n;
 int x1[15], x2[15];
 vector<pair<int,int>> v;
 int ans;
-bool visited[1001];
 
-bool possible(int start, int end){
-    for(int i = start; i <= end; i++){
-        if(visited[i]){
-            return false;
+bool over(int start1, int end1, int start2, int end2){
+    return (start1 <= start2 && start2 <= end1) || (start1 <= end2 && end2 <= end1)
+        || (start2 <= start1 && start1 <= end2) || (start2 <= end1 && end1 <= end2);
+}
+
+bool possible(){
+    for(int i = 0 ; i < (int) v.size(); i++){
+        int start1 = v[i].first;
+        int end1 = v[i].second;
+
+        for(int j = i + 1; j < (int) v.size(); j++){
+            int start2 = v[j].first;
+            int end2 = v[j].second;
+
+            if(over(start1,end1,start2,end2)){
+                return false;
+            }
         }
     }
-
-    return true;
+  
+  return true;
 }
 
-void alloc(int start, int end){
-    for(int i = start; i <= end; i++){
-        visited[i] = true;
-    }
-
-    // for(int i = 1; i < 15; i++){
-    //     if(visited[i]){
-    //         cout << "1 ";
-    //     } else{
-    //         cout << "0 ";
-    //     }
-    // }
-    // cout << '\n';
-
-}
-
-void free(int start, int end){
-    for(int i = start; i <= end; i++){
-        visited[i] = false;
-    }
-    // for(int i = 1; i < 15; i++){
-    //     if(visited[i]){
-    //         cout << "1 ";
-    //     } else{
-    //         cout << "0 ";
-    //     }
-    // }
-    // cout << '\n';
-}
 
 void solve(int cur){
-    //cout << "new solve cur = " << cur << '\n';
-
     if(cur == n){
-        //cout << "now return for cur = " << cur << '\n';
-        int size = v.size();
-        ans = max(ans, size);
+        if(possible()){
+            int size = v.size();
+            ans = max(ans, size);
+        }
         return;
     }
 
+    int start = x1[cur];
+    int end = x2[cur];
 
-    for(int i = cur; i < n; i++){
-        int start = x1[i];
-        int end = x2[i];
+    v.push_back({start, end});
 
-        //cout << "for loop cur = " << cur << " i = " << i << " n = " << n  <<" start = " << start << " end = " << end << "\n\n";
+    solve(cur + 1);
 
-        if(possible(start, end)){
-            alloc(start, end);
-
-            v.push_back({start, end});
-
-            solve(cur + 1);
-            int size = v.size();
-            ans = max(ans, size);
-
-            v.pop_back();
-            free(start, end);
-        }
-
-    }
+    v.pop_back();
+    
+    solve(cur + 1);
 
     return;
 }
@@ -93,7 +64,6 @@ int main() {
     }
 
     solve(0);
-    // Please write your code here.
     cout << ans;
     return 0;
 }
