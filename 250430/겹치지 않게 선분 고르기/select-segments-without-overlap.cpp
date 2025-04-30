@@ -73,15 +73,15 @@ void solve(int cur){
             v.push_back({start, end});
 
             solve(cur + 1);
-
+            int size = v.size();
+            ans = max(ans, size);
+            
             v.pop_back();
             free(start, end);
         }
 
     }
 
-    int size = v.size();
-    ans = max(ans, size);
     return;
 }
 
