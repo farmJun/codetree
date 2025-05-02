@@ -17,8 +17,9 @@ int main() {
 
 
     dp[0][0]= grid[0][0];
-    dp[0][1]= grid[0][1] + dp[0][0];
-    dp[0][2]= grid[0][2] + dp[0][1];
+    for(int i = 1; i < n; i++){
+        dp[0][i] = dp[0][i-1] + grid[0][i];
+    }
 
     for(int i = 1; i < n; i++){
         for(int j = 0; j < n; j++){
