@@ -26,7 +26,7 @@ void gravity(){
 
             int curY = i;
 
-            while(grid[curY + 1][j] == 0 && curY < n){
+            while(grid[curY + 1][j] == 0 && curY < n - 1){
                 grid[curY + 1][j]= grid[curY][j];
                 grid[curY][j] = 0;
                 curY++;
