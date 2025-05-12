@@ -21,12 +21,15 @@ void print(){
 }
 
 void gravity(){
-     for (int i = n - 1; i > 0; i--) {
+     for (int i = n - 2; i >= 0; i--) {
         for (int j = 0; j < n; j++) {
 
-            if(grid[i-1][j] != 0 && grid[i][j] == 0){
-                grid[i][j] = grid[i-1][j];
-                grid[i-1][j] = 0;
+            int curY = i;
+
+            while(grid[curY + 1][j] == 0 && curY < n){
+                grid[curY + 1][j]= grid[curY][j];
+                grid[curY][j] = 0;
+                curY++;
             }
         }
     }
@@ -71,6 +74,8 @@ int main() {
 
     bomb(r-1,c-1);
 
+    //print();
+    //cout << '\n';
     gravity();
     print();
 
