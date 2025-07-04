@@ -19,7 +19,7 @@ void radixSort(){
     }
 
 
-    for(int i = 1; i < now; i *= 10){
+    for(int i = 1; i <= now; i *= 10){
     
         for(int j =0; j < n; j++){
             if(arr[j] < i){
